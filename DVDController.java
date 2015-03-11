@@ -1,35 +1,30 @@
 package myMVC;
 
-public class DVDController {
-	//These control which class is the model and which class is the view, hence this class is the "conter".
-	//The below code assigns the Title of the class to a variable: model, or view. 
-	private DVD model;
-	private DVDView view;
+import java.util.ArrayList;
 
-	//This calls the Model and View classes and assigns them to variables in the conter.
+public class DVDController {
+	//These control which class is the model and which class is the view, hence this class is the "controller".
+	//The below code assigns the Title of the class to a variable: model, or view. 
+	
+
+	//This calls the Model and View classes and assigns them to variables in the controller.
 	//The this keyword qualifies them to this particular method in this class.   
-	public DVDController(DVD model, DVDView view){
-		this.model = model;
-		this.view = view;
-	}
+	
 	//This sets a new employee Title using the DVD model class. 
-	public void setDVDTitle(String Title){
-		model.setTitle(Title);		
+	
+	public static void dvdView(String Title){
+		DVD dvd = DVDModel.find(Title);
+		System.out.println(dvd.getTitle()+" "+"costs"+" "+dvd.getCost());
 	}
-	//This is a getter for the DVDTitle method.
-	public String getDVDTitle(){
-		return model.getTitle();		
+	
+	public static void dvdIndex(){
+		ArrayList<DVD> list = DVDModel.all();
+		for(DVD dvd:list){
+			System.out.println(dvd.getTitle()+" "+ "costs"+" "+dvd.getCost());
+		}
 	}
-	//This sets a new empoyee ID using the DVD model class.
-	public void setDVDCost(int cost){
-		model.setCost(cost);		
-	}
-	//This is a getter for the DVDCost method, which is their ID.
-	public int getDVDCost(){
-		return model.getCost();		
-	}
+
+	
 	//This updates the view class.
-	public void updateView(){				
-		view.printDVDDetails(model.getTitle(), model.getCost());
-	}	
+		
 }
